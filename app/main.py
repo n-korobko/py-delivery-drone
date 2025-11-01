@@ -12,8 +12,7 @@ class BaseRobot:
             weight: int,
             coords: Optional[List[int]] = None
     ) -> None:
-        if coords is None:
-            coords = [0, 0]
+        coords = coords or [0, 0]
         self.name = name
         self.weight = weight
         self.coords = coords
@@ -40,9 +39,8 @@ class FlyingRobot(BaseRobot):
             weight: int,
             coords: Optional[List[int]] = None
     ) -> None:
-        if coords is None:
-            coords = [0, 0, 0]
-        elif len(coords) == 2:
+        coords = coords or [0, 0, 0]
+        if len(coords) == 2:
             coords = coords + [0]
         super().__init__(name, weight, coords[:2])
         self.coords = coords
